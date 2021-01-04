@@ -5,7 +5,8 @@ import {
     Text,
     Dimensions,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Platform
 } from 'react-native';
 import {
     number,
@@ -54,6 +55,7 @@ const Ticket = () => {
     const [numQuay, setNumQuay] = useState(number)
     const [list, setList] = useState([]);
     const [disabled, setDisabled] = useState(false);
+    const [close, setClose] = useState(1);
 
     useEffect(() => {
         randomNum1()
@@ -683,7 +685,16 @@ const Ticket = () => {
         const arr = [...row];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -696,7 +707,16 @@ const Ticket = () => {
         const arr = [...row1];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow1(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -709,7 +729,16 @@ const Ticket = () => {
         const arr = [...row2];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow2(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -722,7 +751,16 @@ const Ticket = () => {
         const arr = [...row3];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow3(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -735,7 +773,16 @@ const Ticket = () => {
         const arr = [...row4];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow4(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -748,7 +795,16 @@ const Ticket = () => {
         const arr = [...row5];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow5(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -761,7 +817,16 @@ const Ticket = () => {
         const arr = [...row6];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow6(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -774,7 +839,16 @@ const Ticket = () => {
         const arr = [...row7];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow7(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -787,7 +861,16 @@ const Ticket = () => {
         const arr = [...row8];
         const num = arr.indexOf(name)
         const newArr = { ...arr[num] }
-        newArr.status = 2;
+        setClose(close + 1);
+        setTimeout(() => {
+            setClose(1)
+        },1000)
+        if (close === 2) {
+            newArr.status = 1;
+        }
+        else {
+            newArr.status = 2;
+        }
         arr[num] = newArr;
         setRow8(arr);
         const check = arr.filter(f => f.status === 2).length
@@ -811,7 +894,8 @@ const Ticket = () => {
                 <TouchableOpacity
                     onPress={() => {
                         quaySo()
-                        setDisabled(true)}}
+                        setDisabled(true)
+                    }}
                     activeOpacity={0.9}
                     style={styles.button}
                     disabled={disabled ? true : false}
@@ -841,7 +925,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -861,7 +945,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -881,7 +965,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -906,7 +990,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -926,7 +1010,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -946,7 +1030,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -971,7 +1055,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -991,7 +1075,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -1011,7 +1095,7 @@ const Ticket = () => {
                             >
                                 <Text style={styles.text}>{m.value}</Text>
                                 {m.status === 2 ? <View style={{ position: 'absolute' }}>
-                                    <Text style={{ fontSize: 46, fontWeight: '100', color: 'red' }}>X</Text>
+                                    <Text style={styles.txtX}>X</Text>
                                 </View> : null}
                             </TouchableOpacity>
                         ))}
@@ -1026,7 +1110,7 @@ const Ticket = () => {
                 modalVisible={modalQuay}
                 closeModal={() => {
                     setModalQuay(null)
-                    setTimeout(() =>{
+                    setTimeout(() => {
                         setDisabled(false)
                     }, 100)
                 }}
@@ -1056,8 +1140,8 @@ const styles = StyleSheet.create({
         borderRightColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 20,
-        width: Dimensions.get('window').width / 9.6
+        width: Dimensions.get('window').width / 9.6,
+        height: Dimensions.get('window').height / 15,
     },
     text: {
         fontSize: 20,
@@ -1079,6 +1163,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 30,
+    },
+    txtX: {
+        fontSize: 46,
+        fontWeight: Platform.OS === 'ios' ? '100' : 'normal',
+        color: 'red'
     }
 });
 

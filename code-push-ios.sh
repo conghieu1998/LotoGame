@@ -1,0 +1,1 @@
+appcenter codepush release-react -a bachchieu1998-gmail.com/LotoGame -d Production -t '1.0'
