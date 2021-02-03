@@ -1,18 +1,14 @@
 import React from 'react';
 import {
     View,
-    Text,
     StyleSheet,
     Dimensions,
+    Text
 } from 'react-native';
-
 import Modal from 'react-native-modal';
-import {actuatedNormalize} from '../helper';
+import { actuatedNormalize } from '../helper';
 
-const QuaySo = ({ modalVisible, closeModal, list }) => {
-    if (!modalVisible) {
-        return null
-    }
+const ListSo = ({ modalVisible, closeModal, list }) => {
     return (
         <Modal
             animationIn="fadeIn"
@@ -20,17 +16,15 @@ const QuaySo = ({ modalVisible, closeModal, list }) => {
             animationInTiming={1}
             animationOutTiming={1}
             transparent={true}
-            isVisible={!!modalVisible}
+            isVisible={modalVisible}
             onBackdropPress={closeModal}
-            // useNativeDriver={true}
             style={{
                 justifyContent: 'center',
-                alignItems: 'center',
-            }}>
+                alignItems: 'center'
+            }}
+        // useNativeDriver={true}
+        >
             <View style={styles.modal}>
-                <View style={styles.number}>
-                    <Text style={styles.num}>{modalVisible}</Text>
-                </View>
                 <Text style={{ fontSize: actuatedNormalize(18), fontWeight: 'bold', color: '#FF6633', textAlign: 'center' }}>Số đã quay</Text>
                 <View style={styles.list}>
                     {list.map(m => (
@@ -72,4 +66,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default QuaySo;
+export default ListSo;

@@ -1,1 +1,1 @@
-appcenter codepush release-react -a bachchieu1998-gmail.com/LotoGameAndroid -d Production -t "1.0"
+appcenter codepush release-react -a bachchieu1998-gmail.com/LotoGameAndroid -d Production -t '1.1'

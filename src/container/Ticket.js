@@ -6,7 +6,8 @@ import {
     Dimensions,
     TouchableOpacity,
     ScrollView,
-    Platform
+    Platform,
+    Image
 } from 'react-native';
 import {
     number,
@@ -24,11 +25,15 @@ import PhaoHoa from './PhaoHoa';
 import _ from 'lodash';
 import QuaySo from './QuaySo';
 import codePush from 'react-native-code-push';
+import AlertNew from './AlertNew';
+import ListSo from './ListSo'
+import { actuatedNormalize } from '../helper';
+
 
 let codePushOptions = { checkFrequency: codePush.CheckFrequency.ON_APP_RESUME };
 
-const colorR = ["#FF99FF", "#33CC66", "#FFCC99", "#FF9933", "#FF0033",
-    "#0000FF", "#6666CC", "#FFFF33", "#66CCCC", "#990066", "#009966"];
+const colorR = ["#EA80FC", "#F06292", "#90CAF9", "#80DEEA", "#81D4FA",
+    "#69F0AE", "#FFCC80", "#FFFF33", "#66CCCC", "#009966", "#ba68c8", "#f4ff81", "#fff59d", "#ff8a65"];
 
 const randomColor = () => {
     return Math.floor(Math.random() * colorR.length)
@@ -56,6 +61,9 @@ const Ticket = () => {
     const [list, setList] = useState([]);
     const [disabled, setDisabled] = useState(false);
     const [close, setClose] = useState(1);
+    const [reset, _setReset] = useState(false);
+    const [data, setData] = useState(false);
+    const [host, setHost] = useState(false);
 
     useEffect(() => {
         randomNum1()
@@ -688,7 +696,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -710,7 +718,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -732,7 +740,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -754,7 +762,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -776,7 +784,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -798,7 +806,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -820,7 +828,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -842,7 +850,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -864,7 +872,7 @@ const Ticket = () => {
         setClose(close + 1);
         setTimeout(() => {
             setClose(1)
-        },1000)
+        }, 1000)
         if (close === 2) {
             newArr.status = 1;
         }
@@ -880,18 +888,9 @@ const Ticket = () => {
     }
 
     return (
-        <View style={[styles.wrapper, { backgroundColor: backColor, }]}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
-                <TouchableOpacity
-                    onPress={() => randomNum1()}
-                    activeOpacity={0.9}
-                    style={styles.button}
-                >
-                    <Text style={{ fontSize: 16, color: 'blue' }} >
-                        Làm mới
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+        <View style={[styles.wrapper, { backgroundColor: backColor }]}>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 40 }}>
+                {host ? <TouchableOpacity
                     onPress={() => {
                         quaySo()
                         setDisabled(true)
@@ -900,16 +899,28 @@ const Ticket = () => {
                     style={styles.button}
                     disabled={disabled ? true : false}
                 >
-                    <Text style={{ fontSize: 16, color: 'blue' }} >
+                    <Text style={{ fontSize: actuatedNormalize(12), color: 'blue' }} >
                         Quay số
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> : <View />}
             </View>
             <ScrollView>
                 <View style={styles.title}>
-                    <Text style={styles.txtTitle}>MỪNG ĐẢNG MỪNG XUÂN 2021</Text>
+                    {/* <Text style={styles.txtTitle}>MỪNG ĐẢNG MỪNG XUÂN 2021</Text> */}
                 </View>
-                <View style={styles.top}>
+                <View style={styles.viewTopLeft}>
+                    <Image
+                        source={require('../images/dao-left.png')}
+                        style={styles.topLeft}
+                    />
+                </View>
+                <View style={styles.viewTopRight}>
+                    <Image
+                        source={require('../images/mai-right.png')}
+                        style={styles.topRight}
+                    />
+                </View>
+                <View style={[styles.top, { marginTop: 65 }]}>
                     <View style={styles.border}>
                         {row.map((m, index) => (
                             <TouchableOpacity
@@ -1101,6 +1112,52 @@ const Ticket = () => {
                         ))}
                     </View>
                 </View>
+                <View style={styles.viewBottomLeft}>
+                    <Image
+                        source={require('../images/mai-left.png')}
+                        style={styles.bottomLeft}
+                    />
+                </View>
+                {/* <View style={styles.viewBottomRight}>
+                    <Image
+                        source={require('../images/mai-right.png')}
+                        style={styles.topRight}
+                    />
+                </View> */}
+                <View style={{
+                    alignItems: 'center',
+                    marginTop: 100,
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end'
+                }}>
+                    <TouchableOpacity
+                        onPress={() => setHost(prev => !prev)}
+                        activeOpacity={0.9}
+                        style={[styles.button, { backgroundColor: host ? '#ffcdd2' : 'white' }]}
+                    >
+                        <Text style={{ fontSize: actuatedNormalize(12), color: 'blue' }} >
+                            Host
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => _setReset(true)}
+                        activeOpacity={0.9}
+                        style={styles.button}
+                    >
+                        <Text style={{ fontSize: actuatedNormalize(12), color: 'blue' }} >
+                            Làm mới
+                    </Text>
+                    </TouchableOpacity>
+                    {host ? <TouchableOpacity
+                        onPress={() => setData(true)}
+                        activeOpacity={0.9}
+                        style={styles.button}
+                    >
+                        <Text style={{ fontSize: actuatedNormalize(12), color: 'blue' }} >
+                            Số đã quay
+                        </Text>
+                    </TouchableOpacity> : null}
+                </View>
             </ScrollView>
             <PhaoHoa
                 modalVisible={modalVisible}
@@ -1116,6 +1173,19 @@ const Ticket = () => {
                 }}
                 list={list}
             />
+            <AlertNew
+                modalVisible={reset}
+                closeModal={() => _setReset(false)}
+                accept={() => {
+                    randomNum1();
+                    _setReset(false)
+                }}
+            />
+            <ListSo
+                modalVisible={data}
+                closeModal={() => setData(false)}
+                list={list}
+            />
         </View>
     )
 }
@@ -1124,7 +1194,8 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         paddingHorizontal: 10,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     top: {
         borderWidth: 1,
@@ -1159,15 +1230,48 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: 'white',
         padding: 10,
-        width: Dimensions.get('window').width / 4,
+        width: Dimensions.get('window').width / 3.5,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 30,
     },
     txtX: {
-        fontSize: 46,
-        fontWeight: Platform.OS === 'ios' ? '100' : 'normal',
+        fontSize: actuatedNormalize(40),
+        fontWeight: Platform.OS === 'ios' ? '200' : '300',
         color: 'red'
+    },
+    topLeft: {
+        width: 200,
+        height: 75,
+        resizeMode: 'cover',
+    },
+    viewTopLeft: {
+        zIndex: 999,
+        position: 'absolute',
+        left: -15,
+        top: 15
+    },
+    topRight: {
+        width: 200,
+        height: 75,
+        resizeMode: 'cover',
+    },
+    viewTopRight: {
+        zIndex: 999,
+        position: 'absolute',
+        right: -10,
+        top: 10
+    },
+    viewBottomLeft: {
+        zIndex: 999,
+        position: 'absolute',
+        left: -10,
+        bottom: 10
+    },
+    bottomLeft: {
+        width: 150,
+        height: 150,
+        resizeMode: 'cover'
     }
 });
 
